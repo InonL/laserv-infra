@@ -1,0 +1,28 @@
+---
+  - hosts: proxmox
+
+    vars_files:
+      - 'vars/vault.yaml'
+    
+    pre_tasks:
+      - name: Add users
+        ansible.builtin.user:
+          name: "{{ item.value.name }}"
+          shell: "{{ item.value.shell }}"
+          groups: "{{ item.value.groups }}"
+          append: true
+        with_dict: "{{ proxmox_users }}"
+        
+      - name: Install packages
+        ansible.builtin.apt:
+          name: "{{ apt_packages }}"
+          update_cache: yes
+          state: present
+    
+    roles:
+      - role: ironicbadger.proxmox_nag_removal
+      - role: tigattack.mergerfs
+      - role: geerlingguy.docker
+      - role: ironicbadger.snapraid
+      - role: vladgh.samba.server
+      - role: fuzzymistborn.autorestic
