@@ -26,3 +26,4 @@
       - role: ironicbadger.snapraid
       - role: vladgh.samba.server
       - role: fuzzymistborn.autorestic
+      - role: artis3n.tailscale
