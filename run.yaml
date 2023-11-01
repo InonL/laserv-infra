@@ -27,3 +27,19 @@
       - role: vladgh.samba.server
       - role: fuzzymistborn.autorestic
       - role: artis3n.tailscale
+
+    tasks:
+      - name: Copy docker-compose.yml
+        ansible.posix.synchronize:
+          src: 'vars/docker-compose.yml'
+          dest: "{{ compose_config_path }}/docker-compose.yml"
+
+      - name: Up new compose 
+        ansible.builtin.shell:
+          cmd: docker compose up -d
+          chdir: "{{ compose_config_path }}"
+        register: output
+
+      - name: Print output
+        debug:
+          var: output
