@@ -29,8 +29,13 @@
       - role: artis3n.tailscale
 
     tasks:
+      - name: Create compose dir if it does not exist
+        ansible.builtin.file:
+          path: "{{ compose_config_path }}"
+          state: directory
+
       - name: Copy docker-compose.yml
-        ansible.posix.synchronize:
+        ansible.builtin.copy:
           src: 'vars/docker-compose.yml'
           dest: "{{ compose_config_path }}/docker-compose.yml"
 
