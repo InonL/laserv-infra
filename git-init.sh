@@ -7,7 +7,7 @@
 if [ -d .git/ ]; then
 rm .git/hooks/pre-commit
 cat <<'EOT' >> .git/hooks/pre-commit
-for FILE in vars/*; do
+for FILE in includes/*; do
     if ( git show :${FILE} | grep -q "\$ANSIBLE_VAULT;" ); then
         echo "${FILE} is Encrypted. Safe to commit."
     else

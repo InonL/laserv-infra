@@ -2,22 +2,10 @@
   - hosts: proxmox
 
     vars_files:
-      - 'vars/vault.yaml'
+      - 'includes/vars.yaml'
     
     pre_tasks:
-      - name: Add users
-        ansible.builtin.user:
-          name: "{{ item.value.name }}"
-          shell: "{{ item.value.shell }}"
-          groups: "{{ item.value.groups }}"
-          append: true
-        with_dict: "{{ proxmox_users }}"
-        
-      - name: Install packages
-        ansible.builtin.apt:
-          name: "{{ apt_packages }}"
-          update_cache: yes
-          state: present
+      - include_tasks: 'includes/pre_tasks.yaml'
     
     roles:
       - role: ironicbadger.proxmox_nag_removal
@@ -26,25 +14,6 @@
       - role: ironicbadger.snapraid
       - role: vladgh.samba.server
       - role: fuzzymistborn.autorestic
-      - role: artis3n.tailscale
-
+    
     tasks:
-      - name: Create compose dir if it does not exist
-        ansible.builtin.file:
-          path: "{{ compose_config_path }}"
-          state: directory
-
-      - name: Copy docker-compose.yml
-        ansible.builtin.copy:
-          src: 'vars/docker-compose.yml'
-          dest: "{{ compose_config_path }}/docker-compose.yml"
-
-      - name: Up new compose 
-        ansible.builtin.shell:
-          cmd: docker compose up -d
-          chdir: "{{ compose_config_path }}"
-        register: output
-
-      - name: Print output
-        debug:
-          var: output
+      - include_tasks: 'includes/tasks.yaml'
