@@ -8,7 +8,6 @@
       - include_tasks: 'includes/pre_tasks.yaml'
     
     roles:
-      - role: ironicbadger.proxmox_nag_removal
       - role: tigattack.mergerfs
       - role: geerlingguy.docker
       - role: ironicbadger.snapraid
