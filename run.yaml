@@ -6,6 +6,7 @@
     
     pre_tasks:
       - include_tasks: 'includes/pre_tasks.yaml'
+        tags: [users, packages]
     
     roles:
       - role: tigattack.mergerfs
@@ -16,3 +17,4 @@
     
     tasks:
       - include_tasks: 'includes/tasks.yaml'
+        tags: [cron, compose]
