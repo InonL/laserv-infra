@@ -1,0 +1,27 @@
+---
+
+collections:
+# /home/inon/.ansible/collections/ansible_collections
+  - name: community.docker
+    version: 5.2.1
+  - name: community.library_inventory_filtering_v1
+    version: 1.1.5
+  - name: vladgh.samba
+    version: 3.5.7
+
+roles:
+# /home/inon/.ansible/roles
+  - name: ironicbadger.snapraid
+    version: 1.0.0
+  - name: geerlingguy.docker
+    version: 8.0.0
+  - name: ironicbadger.proxmox_nag_removal
+    version: 1.0.2
+  - name: sansible.mosquitto
+    version: v3.0.1
+  - name: fuzzymistborn.autorestic
+    version: v0.3.3
+  - name: tigattack.mergerfs
+    version: 2.1.1
+  - name: gekmihesg.openwrt
+    version: master

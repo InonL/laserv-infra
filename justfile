@@ -7,7 +7,7 @@ run HOST *TAGS:
 
 # vault edit
 vaultedit FILE:
-    EDITOR='code --wait' ansible-vault edit includes/{{FILE}}
+    EDITOR='code --wait' ansible-vault edit {{FILE}}
 
 # vault decrypt
 decrypt:
