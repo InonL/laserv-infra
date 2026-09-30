@@ -1,0 +1,9 @@
+[project]
+name = "laserv-infra"
+version = "0.1.0"
+description = "Ansible automation environment managed by devenv and uv"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ansible>=11.0.0",
+]
