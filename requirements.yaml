@@ -23,5 +23,3 @@ roles:
     version: v0.3.3
   - name: tigattack.mergerfs
     version: 2.1.1
-  - name: gekmihesg.openwrt
-    version: master
